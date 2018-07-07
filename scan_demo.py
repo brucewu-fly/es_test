@@ -14,7 +14,7 @@ def do_run(size):
         cnt += 1
         print cnt
     t2 = time.time()
-    print "start time: %s" % t2
+    print "end time: %s" % t2
 
     diff = t2 - t1
     print "cnt: %d, cost: %ss" % (cnt, diff)
