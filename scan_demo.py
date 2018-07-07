@@ -12,7 +12,7 @@ def do_run(size):
     es = Elasticsearch()
     for res in scan(es, size=size):
         cnt += 1
-        print res
+        print cnt
     t2 = time.time()
     print "start time: %s" % t2
 
