@@ -14,7 +14,7 @@ def do_run(size):
     for res in scan(es, size=size):
         cnt += 1
         print cnt
-        print res
+        print res["_id"]
 
     t2 = time.time()
     print "end time: %s" % t2
