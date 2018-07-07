@@ -1,4 +1,5 @@
 import time
+import sys
 
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import scan
@@ -10,10 +11,9 @@ def do_run(size):
     print "start time: %s" % t1
 
     es = Elasticsearch()
-    for res in scan(es, size=size):
+    for _ in scan(es, size=size):
         cnt += 1
         print cnt
-        print res['_id']
 
     t2 = time.time()
     print "end time: %s" % t2
@@ -24,6 +24,7 @@ def do_run(size):
 
 
 def run(size):
+    print "size: %d" % size
     n = 3
     total = 0
     a = []
@@ -37,4 +38,5 @@ def run(size):
     print "avg: %ss" % avg
 
 
-run(10000)
+s = sys.argv[1]
+run(int(s))
