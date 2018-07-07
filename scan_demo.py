@@ -24,9 +24,14 @@ def do_run(size):
 def run(size):
     n = 3
     total = 0
+    a = []
     for i in range(n):
-        total += do_run(size=size)
+        diff = do_run(size=size)
+        a.append(diff)
+        total += diff
+
     avg = total / n
+    print a
     print "avg: %ss" % avg
 
 
