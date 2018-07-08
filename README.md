@@ -13,4 +13,8 @@ mkdir tmp
 python scan_demo_2.py 10000
 python scan_demo_2.py 1000
 python scan_demo_2.py 100
+
+python scan_demo_3.py 1000 5
+python scan_demo_3.py 1000 10
+python scan_demo_3.py 1000 100
 ```
