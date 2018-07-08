@@ -1,12 +1,13 @@
 import time
 import sys
-import threading
+from multiprocessing import Pool
 
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import scan
 
 
-def slice_scan(es, size, slice_id, slice_max):
+def slice_scan(size, slice_id, slice_max):
+    es = Elasticsearch()
     cnt = 0
     for _ in scan(es, query={"slice": {"id": slice_id, "max": slice_max}}, size=size):
         cnt += 1
@@ -15,21 +16,15 @@ def slice_scan(es, size, slice_id, slice_max):
 
 
 def do_run(size, slice_max):
-    es = Elasticsearch()
-
-    thread_lst = []
-    for i in range(slice_max):
-        t = threading.Thread(target=slice_scan, args=(es, size, i, slice_max))
-        thread_lst.append(t)
-
     t1 = time.time()
     print "start time: %s" % t1
 
-    for t in thread_lst:
-        t.start()
+    p = Pool()
+    for i in range(slice_max):
+        p.apply_async(slice_scan, args=(size, i, slice_max))
 
-    for t in thread_lst:
-        t.join()
+    p.close()
+    p.join()
 
     t2 = time.time()
     print "end time: %s" % t2
