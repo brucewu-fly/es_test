@@ -11,7 +11,7 @@ def do_run(size):
     print "start time: %s" % t1
 
     es = Elasticsearch()
-    for _ in scan(es, size=size):
+    for _ in scan(es, size=size, index=index):
         cnt += 1
         print cnt
 
@@ -38,5 +38,6 @@ def run(size):
     print "avg: %ss" % avg
 
 
-s = sys.argv[1]
+index = sys.argv[1]
+s = sys.argv[2]
 run(int(s))

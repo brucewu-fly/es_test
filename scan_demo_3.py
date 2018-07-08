@@ -9,7 +9,7 @@ from elasticsearch.helpers import scan
 def slice_scan(size, slice_id, slice_max):
     es = Elasticsearch()
     cnt = 0
-    for _ in scan(es, query={"slice": {"id": slice_id, "max": slice_max}}, size=size):
+    for _ in scan(es, query={"slice": {"id": slice_id, "max": slice_max}}, size=size, index=index):
         cnt += 1
         print cnt
     print "sliced_id=%d, cnt=%d" % (slice_id, cnt)
@@ -49,6 +49,7 @@ def run(size, slice_max):
     print "avg: %ss" % avg
 
 
-arg1 = sys.argv[1]
-arg2 = sys.argv[2]
+index = sys.argv[1]
+arg1 = sys.argv[2]
+arg2 = sys.argv[3]
 run(int(arg1), int(arg2))

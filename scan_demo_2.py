@@ -13,7 +13,7 @@ def do_run(f, size):
     print "start time: %s" % t1
 
     es = Elasticsearch()
-    for res in scan(es, size=size):
+    for res in scan(es, size=size, index=index):
         cnt += 1
         print cnt
         f.write(json.dumps(res) + '\n')
@@ -43,5 +43,6 @@ def run(size):
     print "avg: %ss" % avg
 
 
-s = sys.argv[1]
+index = sys.argv[1]
+s = sys.argv[2]
 run(int(s))
