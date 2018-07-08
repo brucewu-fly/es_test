@@ -19,7 +19,7 @@ def do_run(size, slice_max):
     t1 = time.time()
     print "start time: %s" % t1
 
-    p = Pool()
+    p = Pool(slice_max)
     for i in range(slice_max):
         p.apply_async(slice_scan, args=(size, i, slice_max))
 
