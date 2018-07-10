@@ -14,7 +14,7 @@ python scan_demo_2.py <index> 10000
 python scan_demo_2.py <index> 1000
 python scan_demo_2.py <index> 100
 
+python scan_demo_3.py <index> 1000 2
 python scan_demo_3.py <index> 1000 5
 python scan_demo_3.py <index> 1000 10
-python scan_demo_3.py <index> 1000 100
 ```
